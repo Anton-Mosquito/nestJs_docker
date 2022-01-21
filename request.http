@@ -1,0 +1,84 @@
+@host = http://localhost:5000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluaXN0cmF0b3JAbWFpbC5ydSIsImlkIjoxMywicm9sZXMiOlt7ImlkIjoxLCJ2YWx1ZSI6IkFETUlOIiwiZGVzY3JpcHRpb24iOiJhZG1pbmlzdHJhdG9yIiwiY3JlYXRlZEF0IjoiMjAyMi0wMS0xOVQwNzo1MzowNC43OTBaIiwidXBkYXRlZEF0IjoiMjAyMi0wMS0xOVQwNzo1MzowNC43OTBaIiwiVXNlclJvbGVzIjp7ImlkIjo1LCJyb2xlc0lkIjoxLCJ1c2VySWQiOjEzfX1dLCJpYXQiOjE2NDI3NjEwMjksImV4cCI6MTY0Mjg0NzQyOX0.PuH7F6PSIeDVYkOjYtSjX9uoHtc0j5mIPRob_-wBciU
+
+
+
+### Get All Users
+GET {{host}}/users HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+
+### Create An User
+POST {{host}}/users HTTP/1.1
+content-type: application/json
+
+{
+  "email": "administrator@mail.ru",
+  "password": "password"
+}
+
+### Give role the user
+POST {{host}}/users/role HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": 1,
+  "value": "USER"
+}
+
+### Ban user with payload
+GET {{host}}/users/ban HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": 1,
+  "banReason": "bot"
+}
+
+### Registration
+POST {{host}}/auth/registration HTTP/1.1
+content-type: application/json
+
+{
+  "email": "administrator@mail.ru",
+  "password": "password"
+}
+
+### Login as a User
+POST {{host}}/auth/login HTTP/1.1
+content-type: application/json
+
+{
+  "email": "administrator@mail.ru",
+  "password": "password"
+}
+
+# ### Logout 
+# POST {{host}}/logout HTTP/1.1
+# content-type: application/json
+# Cookie: refreshToken = 1
+
+
+### Create Role by payload
+POST {{host}}/roles HTTP/1.1
+content-type: application/json
+
+{
+  "value": "USER",
+  "description": "user"
+}
+
+
+### Create a Post
+POST {{host}}/posts HTTP/1.1
+Content-Disposition: form-data; name="image"; filename="../../../Pictures/Google Meet Backgrounds Bar 8.png"
+Content-Type: image/png
+
+{
+  "title": "post title",
+  "content": "post content",
+  "userId": "1"
+}
